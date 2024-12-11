@@ -31,7 +31,6 @@ namespace FolderCleaner
 
             foreach (var dir in args)
             {
-
                 Console.WriteLine();
                 Console.WriteLine("Select directory: {0}", dir);
                 if (Directory.Exists(dir))
@@ -76,7 +75,7 @@ namespace FolderCleaner
                 if (Console.KeyAvailable)
                     break;
 
-                Thread.Sleep(10);
+                Thread.Sleep(7);
             }
         }
 
@@ -89,7 +88,14 @@ namespace FolderCleaner
             {
                 try
                 {
-                    File.SetAttributes(filePath, FileAttributes.Normal);
+                    try
+                    {
+                        File.SetAttributes(filePath, FileAttributes.Normal);
+                    }
+                    catch
+                    {
+
+                    }
                     File.Delete(filePath);
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.ForegroundColor = ConsoleColor.Black;
